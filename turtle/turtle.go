@@ -16,7 +16,7 @@ type Check struct {
 }
 
 func Start() {
-	fmt.Println("Starts!🐢")
+	fmt.Println("[testurtle] Starts!🐢")
 	Turtling()
 }
 
@@ -34,7 +34,7 @@ func Turtling(){
 
 func Patrol(checks []Check){
 	for _, c := range checks {
-		fmt.Printf("%s : %s\n", c.URL, c.Target)
+		fmt.Printf("[testurtle] %s : %s\n", c.URL, c.Target)
 		r, err := http.Get(c.URL)
 		if err != nil{
 			log.Fatal(err)
@@ -44,7 +44,7 @@ func Patrol(checks []Check){
     	newStr := buf.String()
 		b := strings.Contains(newStr, c.Target)
 		if b == true{
-			fmt.Println("OK")
+			fmt.Println("[testurtle] => OK")
 		}
     }
 }
