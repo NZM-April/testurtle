@@ -7,6 +7,6 @@ BINARY_NAME=testurtle
 deps:
 	$(DEP)
 test:
-    $(GOTEST) -v ./...
+	$(GOTEST) -v ./...
 build:
-    $(GOBUILD) -o $(BINARY_NAME) -v
+	$(GOBUILD) -o $(BINARY_NAME) -v
