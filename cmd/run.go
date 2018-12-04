@@ -1,8 +1,6 @@
 package cmd
 
 import (
-	"fmt"
-
 	"github.com/NZM-April/testurtle/turtle"
 	"github.com/spf13/cobra"
 )
