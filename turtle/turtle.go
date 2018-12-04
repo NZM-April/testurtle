@@ -15,14 +15,14 @@ type Check struct {
     Target string `json:"target"`
 }
 
-func Start() {
+func Start(config string) {
 	fmt.Println("[testurtle] Starts!🐢")
-	Turtling()
+	Turtling(config)
 }
 
 func Turtling(c string){
 	var config string
-	if config != nil{
+	if config != ""{
 		config = c
 	} else {
 		config = "turtleconfig.json"
