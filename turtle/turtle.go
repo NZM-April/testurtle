@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"encoding/json"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"strings"
 	"bytes"
@@ -29,11 +28,11 @@ func Turtling(config string){
 	}
 	bytes, err := ioutil.ReadFile(configFile)
     if err != nil {
-        log.Fatal(err)
+        fmt.Println(err)
     }
     var checks []Check
     if err := json.Unmarshal(bytes, &checks); err != nil {
-        log.Fatal(err)
+        fmt.Println(err)
     }
 	Patrol(checks)
 }
@@ -45,7 +44,7 @@ func Patrol(checks []Check){
 		fmt.Printf("[testurtle] %s : %s\n", c.URL, c.Target)
 		r, err := http.Get(c.URL)
 		if err != nil{
-			log.Fatal(err)
+			fmt.Println(err)
 		}
 		buf := new(bytes.Buffer)
     	buf.ReadFrom(r.Body)
