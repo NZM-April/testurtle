@@ -6,11 +6,11 @@ import (
 )
 
 type Options struct {
-    config string
+	config string
 }
 
 var (
-    o = &Options{}
+	o = &Options{}
 )
 
 func init() {
@@ -19,9 +19,9 @@ func init() {
 }
 
 var runCmd = &cobra.Command{
-    Use:   "run",
-    Short: "Start Testing.",
-    Run: func(cmd *cobra.Command, args []string) {
+	Use:   "run",
+	Short: "Start Testing.",
+	Run: func(cmd *cobra.Command, args []string) {
 		turtle.Start(o.config)
 	},
 }
