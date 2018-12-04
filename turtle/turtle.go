@@ -1,18 +1,18 @@
 package turtle
 
 import (
-	"fmt"
+	"bytes"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
-	"strings"
-	"bytes"
 	"os"
+	"strings"
 )
 
 type Check struct {
-    URL string `json:"URL"`
-    Target string `json:"target"`
+	URL    string `json:"URL"`
+	Target string `json:"target"`
 }
 
 func Start(config string) {
@@ -20,46 +20,46 @@ func Start(config string) {
 	Turtling(config)
 }
 
-func Turtling(config string){
+func Turtling(config string) {
 	var configFile string
-	if config != ""{
+	if config != "" {
 		configFile = config
 	} else {
 		configFile = "turtleconfig.json"
 	}
 	bytes, err := ioutil.ReadFile(configFile)
-    if err != nil {
-        fmt.Printf("[testurtle] error! %s\n", err)
-	os.Exit(1)
-    }
-    var checks []Check
-    if err := json.Unmarshal(bytes, &checks); err != nil {
-        fmt.Printf("[testurtle] error! %s\n", err)
-	os.Exit(1)
-    }
+	if err != nil {
+		fmt.Printf("[testurtle] error! %s\n", err)
+		os.Exit(1)
+	}
+	var checks []Check
+	if err := json.Unmarshal(bytes, &checks); err != nil {
+		fmt.Printf("[testurtle] error! %s\n", err)
+		os.Exit(1)
+	}
 	Patrol(checks)
 }
 
-func Patrol(checks []Check){
+func Patrol(checks []Check) {
 	okNum := 0
 	ngNum := 0
 	for _, c := range checks {
 		fmt.Printf("[testurtle] %s : %s\n", c.URL, c.Target)
 		r, err := http.Get(c.URL)
-		if err != nil{
+		if err != nil {
 			fmt.Printf("[testurtle] error! %s\n", err)
 		}
 		buf := new(bytes.Buffer)
-    	buf.ReadFrom(r.Body)
-    	newStr := buf.String()
+		buf.ReadFrom(r.Body)
+		newStr := buf.String()
 		b := strings.Contains(newStr, c.Target)
-		if b == true{
-			fmt.Printf("%s \x1b[32m%s\x1b[0m\n", "[testurtle] =>","ok")
+		if b == true {
+			fmt.Printf("%s \x1b[32m%s\x1b[0m\n", "[testurtle] =>", "ok")
 			okNum++
 		} else {
-			fmt.Printf("%s \x1b[31m%s\x1b[0m\n", "[testurtle] =>","ng")
+			fmt.Printf("%s \x1b[31m%s\x1b[0m\n", "[testurtle] =>", "ng")
 			ngNum++
 		}
 		fmt.Printf("[testurtle] Test completed. OK: \x1b[32m%d\x1b[0m  NG: \x1b[31m%d\x1b[0m\n", okNum, ngNum)
-    }
+	}
 }
