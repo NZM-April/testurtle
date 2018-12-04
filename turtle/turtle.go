@@ -21,6 +21,7 @@ func Start(config string) {
 }
 
 func Turtling(config string){
+	var configFile string
 	if config != ""{
 		configFile = config
 	} else {
