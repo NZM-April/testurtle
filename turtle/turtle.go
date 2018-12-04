@@ -39,6 +39,8 @@ func Turtling(config string){
 }
 
 func Patrol(checks []Check){
+	okNum := 0
+	ngNum := 0
 	for _, c := range checks {
 		fmt.Printf("[testurtle] %s : %s\n", c.URL, c.Target)
 		r, err := http.Get(c.URL)
@@ -50,7 +52,12 @@ func Patrol(checks []Check){
     	newStr := buf.String()
 		b := strings.Contains(newStr, c.Target)
 		if b == true{
-			fmt.Println("[testurtle] => OK")
+			fmt.Printf("%s \x1b[32m%s\x1b[0m\n", "[testurtle] =>","ok")
+			okNum++
+		} else {
+			fmt.Println("%s \x1b[31m%s\x1b[0m\n", "[testurtle] =>","ng")
+			ngNum++
 		}
+		fmt.Printf("[testurtle] Test completed. OK: %d  NG: %d", okNum, ngNum)
     }
 }
