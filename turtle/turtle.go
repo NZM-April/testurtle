@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"strings"
 	"bytes"
+	"os"
 )
 
 type Check struct {
@@ -28,11 +29,13 @@ func Turtling(config string){
 	}
 	bytes, err := ioutil.ReadFile(configFile)
     if err != nil {
-        fmt.Println(err)
+        fmt.Printf("[testurtle] error! %s\n", err)
+	os.Exit(1)
     }
     var checks []Check
     if err := json.Unmarshal(bytes, &checks); err != nil {
-        fmt.Println(err)
+        fmt.Printf("[testurtle] error! %s\n", err)
+	os.Exit(1)
     }
 	Patrol(checks)
 }
@@ -44,7 +47,7 @@ func Patrol(checks []Check){
 		fmt.Printf("[testurtle] %s : %s\n", c.URL, c.Target)
 		r, err := http.Get(c.URL)
 		if err != nil{
-			fmt.Println(err)
+			fmt.Printf("[testurtle] error! %s\n", err)
 		}
 		buf := new(bytes.Buffer)
     	buf.ReadFrom(r.Body)
