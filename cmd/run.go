@@ -15,7 +15,7 @@ var (
 
 func init() {
 	rootCmd.AddCommand(runCmd)
-	runCmd.Flags().StringVarP(&o.config, "file", "f", "./testurtle.json", "config file")
+	runCmd.Flags().StringVarP(&o.config, "file", "f", "./turtleconfig.json", "config file")
 }
 
 var runCmd = &cobra.Command{
