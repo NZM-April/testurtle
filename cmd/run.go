@@ -24,7 +24,6 @@ var runCmd = &cobra.Command{
     Use:   "run",
     Short: "Start Testing.",
     Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("config file: %s", o.config)
-		turtle.Start()
+		turtle.Start(o.config)
 	},
 }
