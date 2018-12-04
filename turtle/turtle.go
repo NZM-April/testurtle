@@ -20,12 +20,11 @@ func Start(config string) {
 	Turtling(config)
 }
 
-func Turtling(c string){
-	var config string
+func Turtling(configFile string){
 	if config != ""{
-		config = c
+		configFile = c
 	} else {
-		config = "turtleconfig.json"
+		configFile = "turtleconfig.json"
 	}
 	bytes, err := ioutil.ReadFile(config)
     if err != nil {
