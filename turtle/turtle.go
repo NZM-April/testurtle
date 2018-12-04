@@ -55,9 +55,9 @@ func Patrol(checks []Check){
 			fmt.Printf("%s \x1b[32m%s\x1b[0m\n", "[testurtle] =>","ok")
 			okNum++
 		} else {
-			fmt.Println("%s \x1b[31m%s\x1b[0m\n", "[testurtle] =>","ng")
+			fmt.Printf("%s \x1b[31m%s\x1b[0m\n", "[testurtle] =>","ng")
 			ngNum++
 		}
-		fmt.Printf("[testurtle] Test completed. OK: %d  NG: %d", okNum, ngNum)
+		fmt.Printf("[testurtle] Test completed. OK: \x1b[32m%d\x1b[0m  NG: \x1b[31m%d\x1b[0m\n", okNum, ngNum)
     }
 }
