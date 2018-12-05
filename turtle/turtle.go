@@ -15,6 +15,7 @@ type Check struct {
 	URL    string `json:"URL"`
 	Contain string `json:"contain"`
 	Title string `json:"title"`
+	Status int `json:"status"`
 }
 
 func Start(config string) {
@@ -74,12 +75,24 @@ func Patrol(checks []Check) {
 			buf := new(bytes.Buffer)
 			buf.ReadFrom(r.Body)
 			newStr := buf.String()
-
-			// newStrから<title></title>にはさまれた文字を取り出す処理
 			title := FindTitle(newStr)
-
 			b := strings.Contains(title, c.Title)
 			if b == true {
+				fmt.Printf("%s \x1b[32m%s\x1b[0m\n", "[testurtle] =>", "ok")
+				okNum++
+			} else {
+				fmt.Printf("%s \x1b[31m%s\x1b[0m\n", "[testurtle] =>", "ng")
+				ngNum++
+			}
+		}
+
+		if c.Status != 0 {
+			fmt.Printf("[testurtle] %s : %d\n", c.URL, c.Status)
+			r, err := http.Get(c.URL)
+			if err != nil {
+				fmt.Printf("[testurtle] error! %s\n", err)
+			}
+			if r.StatusCode == c.Status {
 				fmt.Printf("%s \x1b[32m%s\x1b[0m\n", "[testurtle] =>", "ok")
 				okNum++
 			} else {
