@@ -1,6 +1,6 @@
 [
-    {"URL": "https://www.google.com/", "contain": "Google"},
-    {"URL": "https://www.google.com/", "title": "Google"},
-    {"URL": "https://www.google.com/", "status": 200}
+    {"URL": "https://www.hashicorp.com/", "contain": "Cloud"},
+    {"URL": "https://github.com/", "title": "GitHub"},
+    {"URL": "https://www.google.com/", "status": 200},
+    {"URL": "https://www.cncf.io", "contain": "Open", "title": "Native", "status": 200}
 ]
-

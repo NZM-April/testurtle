@@ -47,15 +47,16 @@ func Patrol(checks []Check) {
 	okNum := 0
 	ngNum := 0
 	for _, c := range checks {
+		r, err := http.Get(c.URL)
+		buf := new(bytes.Buffer)
+		buf.ReadFrom(r.Body)
+		newStr := buf.String()
+
 		if c.Contain != "" {
 			fmt.Printf("[testurtle] %s : %s\n", c.URL, c.Contain)
-			r, err := http.Get(c.URL)
 			if err != nil {
 				fmt.Printf("[testurtle] error! %s\n", err)
 			}
-			buf := new(bytes.Buffer)
-			buf.ReadFrom(r.Body)
-			newStr := buf.String()
 			b := strings.Contains(newStr, c.Contain)
 			if b == true {
 				fmt.Printf("%s \x1b[32m%s\x1b[0m\n", "[testurtle] =>", "ok")
@@ -68,14 +69,12 @@ func Patrol(checks []Check) {
 
 		if c.Title != "" {
 			fmt.Printf("[testurtle] %s : %s\n", c.URL, c.Title)
-			r, err := http.Get(c.URL)
 			if err != nil {
 				fmt.Printf("[testurtle] error! %s\n", err)
 			}
-			buf := new(bytes.Buffer)
-			buf.ReadFrom(r.Body)
-			newStr := buf.String()
+			fmt.Println("newStr is" + newStr)
 			title := FindTitle(newStr)
+			fmt.Println("title is " + title)
 			b := strings.Contains(title, c.Title)
 			if b == true {
 				fmt.Printf("%s \x1b[32m%s\x1b[0m\n", "[testurtle] =>", "ok")
@@ -88,7 +87,6 @@ func Patrol(checks []Check) {
 
 		if c.Status != 0 {
 			fmt.Printf("[testurtle] %s : %d\n", c.URL, c.Status)
-			r, err := http.Get(c.URL)
 			if err != nil {
 				fmt.Printf("[testurtle] error! %s\n", err)
 			}
