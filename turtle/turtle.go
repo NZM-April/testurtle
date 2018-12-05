@@ -74,10 +74,7 @@ func Patrol(checks []Check) {
 			buf := new(bytes.Buffer)
 			buf.ReadFrom(r.Body)
 			newStr := buf.String()
-
-			// newStrから<title></title>にはさまれた文字を取り出す処理
 			title := FindTitle(newStr)
-
 			b := strings.Contains(title, c.Title)
 			if b == true {
 				fmt.Printf("%s \x1b[32m%s\x1b[0m\n", "[testurtle] =>", "ok")
