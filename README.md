@@ -1,6 +1,6 @@
 # testurtle
 
-testurtle is Micro Infrastructure Testing Engine.
+testurtle is Infrastructure Testing Micro Engine.
 
 # usage
 
