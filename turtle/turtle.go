@@ -72,9 +72,7 @@ func Patrol(checks []Check) {
 			if err != nil {
 				fmt.Printf("[testurtle] error! %s\n", err)
 			}
-			fmt.Println("newStr is" + newStr)
 			title := FindTitle(newStr)
-			fmt.Println("title is " + title)
 			b := strings.Contains(title, c.Title)
 			if b == true {
 				fmt.Printf("%s \x1b[32m%s\x1b[0m\n", "[testurtle] =>", "ok")
