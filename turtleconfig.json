@@ -1,5 +1,6 @@
 [
     {"URL": "https://www.google.com/", "contain": "Google"},
-    {"URL": "https://www.google.com/", "title": "Google"}
+    {"URL": "https://www.google.com/", "title": "Google"},
+    {"URL": "https://www.google.com/", "status": 200}
 ]
 
