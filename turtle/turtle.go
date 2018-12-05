@@ -87,8 +87,8 @@ func Patrol(checks []Check) {
 				ngNum++
 			}
 		}
-		fmt.Printf("[testurtle] Test completed. OK: \x1b[32m%d\x1b[0m  NG: \x1b[31m%d\x1b[0m\n", okNum, ngNum)
 	}
+	fmt.Printf("[testurtle] Test completed. OK: \x1b[32m%d\x1b[0m  NG: \x1b[31m%d\x1b[0m\n", okNum, ngNum)
 }
 
 func FindTitle(s string) string{
