@@ -25,21 +25,25 @@ func Start(config string) {
 
 func Turtling(config string) {
 	var configFile string
+	var checks []Check
+
 	if config != "" {
 		configFile = config
 	} else {
 		configFile = "turtleconfig.json"
 	}
+
 	bytes, err := ioutil.ReadFile(configFile)
 	if err != nil {
 		fmt.Printf("[testurtle] error! %s\n", err)
 		os.Exit(1)
 	}
-	var checks []Check
+
 	if err := json.Unmarshal(bytes, &checks); err != nil {
 		fmt.Printf("[testurtle] error! %s\n", err)
 		os.Exit(1)
 	}
+	
 	Patrol(checks)
 }
 
