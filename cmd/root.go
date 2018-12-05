@@ -12,7 +12,10 @@ var rootCmd = &cobra.Command{
 	Short: "testurtle is the micro infrastructure tester.",
 	Long:  "testurtle is the micro infrastructure tester. That's all.",
 	Run: func(cmd *cobra.Command, args []string) {
-
+		if len(args) == 0 {
+            cmd.Help()
+            os.Exit(0)
+        }
 	},
 }
 
