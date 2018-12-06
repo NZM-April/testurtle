@@ -11,7 +11,11 @@ import (
 	"regexp"
 )
 
-type Check struct {
+type Modules struct {
+	Items Items `json:"item"`
+}
+
+type Items struct {
 	URL    string `json:"URL"`
 	Contain string `json:"contain"`
 	Title string `json:"title"`
@@ -25,7 +29,8 @@ func Start(config string) {
 
 func Turtling(config string) {
 	var configFile string
-	var checks []Check
+	//var modules []Modules
+	var items []Items
 
 	if config != "" {
 		configFile = config
@@ -39,29 +44,29 @@ func Turtling(config string) {
 		os.Exit(1)
 	}
 
-	if err := json.Unmarshal(bytes, &checks); err != nil {
+	if err := json.Unmarshal(bytes, &items); err != nil {
 		fmt.Printf("[testurtle] error! %s\n", err)
 		os.Exit(1)
 	}
 	
-	Patrol(checks)
+	Patrol(items)
 }
 
-func Patrol(checks []Check) {
+func Patrol(items []Items) {
 	okNum := 0
 	ngNum := 0
-	for _, c := range checks {
-		r, err := http.Get(c.URL)
+	for _, i := range items {
+		r, err := http.Get(i.URL)
 		buf := new(bytes.Buffer)
 		buf.ReadFrom(r.Body)
 		newStr := buf.String()
 
-		if c.Contain != "" {
-			fmt.Printf("[testurtle] %s : %s\n", c.URL, c.Contain)
+		if i.Contain != "" {
+			fmt.Printf("[testurtle] %s : %s\n", i.URL, i.Contain)
 			if err != nil {
 				fmt.Printf("[testurtle] error! %s\n", err)
 			}
-			b := strings.Contains(newStr, c.Contain)
+			b := strings.Contains(newStr, i.Contain)
 			if b == true {
 				fmt.Printf("%s \x1b[32m%s\x1b[0m\n", "[testurtle] =>", "ok")
 				okNum++
@@ -71,13 +76,13 @@ func Patrol(checks []Check) {
 			}
 		}
 
-		if c.Title != "" {
-			fmt.Printf("[testurtle] %s : %s\n", c.URL, c.Title)
+		if i.Title != "" {
+			fmt.Printf("[testurtle] %s : %s\n", i.URL, i.Title)
 			if err != nil {
 				fmt.Printf("[testurtle] error! %s\n", err)
 			}
 			title := FindTitle(newStr)
-			b := strings.Contains(title, c.Title)
+			b := strings.Contains(title, i.Title)
 			if b == true {
 				fmt.Printf("%s \x1b[32m%s\x1b[0m\n", "[testurtle] =>", "ok")
 				okNum++
@@ -87,12 +92,12 @@ func Patrol(checks []Check) {
 			}
 		}
 
-		if c.Status != 0 {
-			fmt.Printf("[testurtle] %s : %d\n", c.URL, c.Status)
+		if i.Status != 0 {
+			fmt.Printf("[testurtle] %s : %d\n", i.URL, i.Status)
 			if err != nil {
 				fmt.Printf("[testurtle] error! %s\n", err)
 			}
-			if r.StatusCode == c.Status {
+			if r.StatusCode == i.Status {
 				fmt.Printf("%s \x1b[32m%s\x1b[0m\n", "[testurtle] =>", "ok")
 				okNum++
 			} else {
