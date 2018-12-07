@@ -12,7 +12,7 @@ import (
 )
 
 type Modules struct {
-	Items Items `json:"item"`
+	Items []Items `json:"items"`
 }
 
 type Items struct {
@@ -28,28 +28,29 @@ func Start(config string) {
 }
 
 func Turtling(config string) {
+	fmt.Println(JsonParse(config))
+	//Patrol(items)
+}
+
+func JsonParse(config string) []Items{
 	var configFile string
-	//var modules []Modules
-	var items []Items
+	var modules Modules
 
 	if config != "" {
 		configFile = config
 	} else {
 		configFile = "turtleconfig.json"
 	}
-
 	bytes, err := ioutil.ReadFile(configFile)
 	if err != nil {
 		fmt.Printf("[testurtle] error! %s\n", err)
 		os.Exit(1)
 	}
-
-	if err := json.Unmarshal(bytes, &items); err != nil {
+	if err := json.Unmarshal(bytes, &modules); err != nil {
 		fmt.Printf("[testurtle] error! %s\n", err)
 		os.Exit(1)
 	}
-	
-	Patrol(items)
+	return modules.Items
 }
 
 func Patrol(items []Items) {
