@@ -1,3 +1,3 @@
 #!/bin/bash
 
-echo "sample script OK."
+echo "[testurtle] sample script OK."
