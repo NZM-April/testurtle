@@ -9,6 +9,7 @@ import(
 
 type Modules struct {
 	Items []Items `json:"items"`
+	Notifications []Notifications `json:"notifications"`
 }
 
 type Items struct {
@@ -18,7 +19,11 @@ type Items struct {
 	Status int `json:"status"`
 }
 
-func JsonParse(config string) []Items{
+type Notifications struct {
+	Sh string `json:"sh"`
+}
+
+func JsonParse(config string)([]Items, []Notifications){
 	var configFile string
 	var modules Modules
 
@@ -36,5 +41,5 @@ func JsonParse(config string) []Items{
 		fmt.Printf("[testurtle] error! %s\n", err)
 		os.Exit(1)
 	}
-	return modules.Items
+	return modules.Items, modules.Notifications
 }

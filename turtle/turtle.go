@@ -14,8 +14,9 @@ func Start(config string) {
 }
 
 func Turtling(config string) {
-	items := modules.JsonParse(config)
+	items, notifications := modules.JsonParse(config)
 	Patrol(items)
+	Notify(notifications)
 }
 
 func Patrol(items []modules.Items) {
@@ -36,4 +37,10 @@ func Patrol(items []modules.Items) {
 		okNum, ngNum = modules.StatusModule(r, i, okNum, ngNum)
 	}
 	fmt.Printf("[testurtle] Test completed. OK: \x1b[32m%d\x1b[0m  NG: \x1b[31m%d\x1b[0m\n", okNum, ngNum)
+}
+
+func Notify(notifications []modules.Notifications){
+	for _, n := range notifications {
+		modules.ShModule(n)
+	}
 }
