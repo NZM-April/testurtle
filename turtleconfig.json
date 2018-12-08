@@ -4,5 +4,8 @@
         {"URL": "https://github.com/", "title": "GitHub"},
         {"URL": "https://www.google.com/", "status": 200},
         {"URL": "https://www.cncf.io", "contain": "Open", "title": "Native", "status": 200}
+    ],
+    "notifications": [
+        {"sh": "./notify.sh"}
     ]
 }
