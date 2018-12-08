@@ -28,8 +28,8 @@ func Start(config string) {
 }
 
 func Turtling(config string) {
-	fmt.Println(JsonParse(config))
-	//Patrol(items)
+	items := JsonParse(config)
+	Patrol(items)
 }
 
 func JsonParse(config string) []Items{
@@ -63,6 +63,7 @@ func Patrol(items []Items) {
 		newStr := buf.String()
 
 		if i.Contain != "" {
+			var err error
 			fmt.Printf("[testurtle] %s : %s\n", i.URL, i.Contain)
 			if err != nil {
 				fmt.Printf("[testurtle] error! %s\n", err)
