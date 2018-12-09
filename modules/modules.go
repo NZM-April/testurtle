@@ -9,8 +9,17 @@ type Session struct {
 	NgNum int
 }
 
+type Module struct {
+	OkNum int
+	NgNum int
+	Response *http.Response
+	BodyStr string
+	Items Items
+}
+
 func  (s *Session) ModuleRun(r *http.Response, bodyStr string, i Items){
-	s.OkNum, s.NgNum = ContainModule(bodyStr, i, s.OkNum, s.NgNum)
-	s.OkNum, s.NgNum = TitleModule(bodyStr, i, s.OkNum, s.NgNum)
+	module := Module{s.OkNum, s.NgNum, r, bodyStr, i}
+	s.OkNum, s.NgNum = module.ContainModule()
+	s.OkNum, s.NgNum = module.TitleModule()
 	s.OkNum, s.NgNum = StatusModule(r, i, s.OkNum, s.NgNum)
 }
