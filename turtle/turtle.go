@@ -41,6 +41,6 @@ func Patrol(items []modules.Items) {
 
 func Notify(notifications []modules.Notifications){
 	for _, n := range notifications {
-		modules.ShModule(n)
+		modules.CommandModule(n)
 	}
 }

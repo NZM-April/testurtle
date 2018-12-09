@@ -20,7 +20,7 @@ type Items struct {
 }
 
 type Notifications struct {
-	Sh string `json:"sh"`
+	Cmd string `json:"cmd"`
 }
 
 func JsonParse(config string)([]Items, []Notifications){
