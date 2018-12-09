@@ -6,7 +6,7 @@ import(
 	"fmt"
 )
 
-func FindTitle(s string) string{
+func FindTitle(s string) string {
 	re := regexp.MustCompile("<title>" + `.*` + "</title>")
 	title := re.FindString(s)
 	a := strings.Replace(title, "<title>", "", 1)
