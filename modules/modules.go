@@ -2,6 +2,7 @@ package modules
 
 import(
 	"net/http"
+	"fmt"
 )
 
 type Session struct {
@@ -21,4 +22,14 @@ func (s *Session) ModuleRun(r *http.Response, bodyStr string, i Items){
 	module.ContainModule()
 	module.TitleModule()
 	module.StatusModule()
+}
+
+func (m *Module)Judgement(b bool){
+	if b == true {
+		fmt.Printf("%s \x1b[32m%s\x1b[0m\n", "[testurtle] =>", "ok")
+		m.Session.OkNum++
+	} else {
+		fmt.Printf("%s \x1b[31m%s\x1b[0m\n", "[testurtle] =>", "ng")
+		m.Session.NgNum++
+	}
 }

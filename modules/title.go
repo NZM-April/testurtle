@@ -4,8 +4,6 @@ import(
 	"regexp"
 	"strings"
 	"fmt"
-
-	"github.com/NZM-April/testurtle/total"
 )
 
 func FindTitle(s string) string {
@@ -18,13 +16,9 @@ func FindTitle(s string) string {
 
 func (m *Module) TitleModule(){
 	if m.Items.Title != "" {
-		var err error
 		fmt.Printf("[testurtle] %s : %s\n", m.Items.URL, m.Items.Title)
-		if err != nil {
-			fmt.Printf("[testurtle] error! %s\n", err)
-		}
 		title := FindTitle(m.BodyStr)
 		b := strings.Contains(title, m.Items.Title)
-		m.Session.OkNum, m.Session.NgNum = total.Judgement(b, m.Session.OkNum, m.Session.NgNum)
+		m.Judgement(b)
 	}
 }
