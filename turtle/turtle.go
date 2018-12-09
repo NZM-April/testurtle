@@ -8,6 +8,8 @@ import (
 	"github.com/NZM-April/testurtle/modules"
 )
 
+var resultNums modules.ResultNums
+
 func Start(config string) {
 	fmt.Println("[testurtle] Starts!🐢")
 	Turtling(config)
@@ -15,13 +17,11 @@ func Start(config string) {
 
 func Turtling(config string) {
 	items, notifications := modules.JsonParse(config)
-	Patrol(items)
-	Notify(notifications)
+	ItemsRun(items)
+	NotificationsRun(notifications)
 }
 
-func Patrol(items []modules.Items) {
-	var resultNums modules.ResultNums
-
+func ItemsRun(items []modules.Items) {
 	for _, i := range items {
 		r, err := http.Get(i.URL)
 		if err != nil{
@@ -31,13 +31,13 @@ func Patrol(items []modules.Items) {
 		buf.ReadFrom(r.Body)
 		bodyStr := buf.String()
 
-		resultNums.ModuleRun(r, bodyStr, i)
+		resultNums.ItemsModuleRun(r, bodyStr, i)
 	}
 	fmt.Printf("[testurtle] Test completed. OK: \x1b[32m%d\x1b[0m  NG: \x1b[31m%d\x1b[0m\n", resultNums.OkNum, resultNums.NgNum)
 }
 
-func Notify(notifications []modules.Notifications){
+func NotificationsRun(notifications []modules.Notifications){
 	for _, n := range notifications {
-		modules.CommandModule(n)
+		resultNums.NotificationsModuleRun(n)
 	}
 }

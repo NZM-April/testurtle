@@ -14,11 +14,11 @@ func FindTitle(s string) string {
 	return trimed_Title
 }
 
-func (m *ModuleArgs) TitleModule(){
-	if m.Items.Title != "" {
-		fmt.Printf("[testurtle] %s : %s\n", m.Items.URL, m.Items.Title)
-		title := FindTitle(m.BodyStr)
-		b := strings.Contains(title, m.Items.Title)
-		m.Judgement(b)
+func (s *Session) TitleModule(){
+	if s.Items.Title != "" {
+		fmt.Printf("[testurtle] %s : %s\n", s.Items.URL, s.Items.Title)
+		title := FindTitle(s.BodyStr)
+		b := strings.Contains(title, s.Items.Title)
+		s.Judgement(b)
 	}
 }
