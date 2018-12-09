@@ -25,7 +25,7 @@ func (m *Module) TitleModule()(int, int){
 		}
 		title := FindTitle(m.BodyStr)
 		b := strings.Contains(title, m.Items.Title)
-		m.OkNum, m.NgNum = total.Judgement(b, m.OkNum, m.NgNum)
+		m.Session.OkNum, m.Session.NgNum = total.Judgement(b, m.Session.OkNum, m.Session.NgNum)
 	}
-	return m.OkNum, m.NgNum
+	return m.Session.OkNum, m.Session.NgNum
 }

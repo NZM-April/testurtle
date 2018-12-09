@@ -10,16 +10,15 @@ type Session struct {
 }
 
 type Module struct {
-	OkNum int
-	NgNum int
+	Session *Session
 	Response *http.Response
 	BodyStr string
 	Items Items
 }
 
 func (s *Session) ModuleRun(r *http.Response, bodyStr string, i Items){
-	module := Module{s.OkNum, s.NgNum, r, bodyStr, i}
+	module := Module{s, r, bodyStr, i}
 	s.OkNum, s.NgNum = module.ContainModule()
 	s.OkNum, s.NgNum = module.TitleModule()
-	s.OkNum, s.NgNum = module.StatusModule()
+	module.StatusModule()
 }
