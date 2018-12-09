@@ -35,5 +35,5 @@ func (s *Session)Judgement(b bool){
 }
 
 func (rn *ResultNums) NotificationsModuleRun(n Notifications){
-	CommandModule(n)
+	rn.CommandModule(n)
 }
