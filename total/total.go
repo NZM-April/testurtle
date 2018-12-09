@@ -1,4 +1,4 @@
-package modules
+package total
 
 import "fmt"
 

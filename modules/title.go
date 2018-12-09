@@ -4,6 +4,8 @@ import(
 	"regexp"
 	"strings"
 	"fmt"
+
+	"github.com/NZM-April/testurtle/total"
 )
 
 func FindTitle(s string) string {
@@ -23,7 +25,7 @@ func TitleModule(bodyStr string, i Items, okNum int, ngNum int)(int, int){
 		}
 		title := FindTitle(bodyStr)
 		b := strings.Contains(title, i.Title)
-		okNum, ngNum = Judgement(b, okNum, ngNum)
+		okNum, ngNum = total.Judgement(b, okNum, ngNum)
 	}
 	return okNum, ngNum
 }
