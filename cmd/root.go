@@ -7,7 +7,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var rootCmd = &cobra.Command{
+var rootCmd = &cobra.Command {
 	Use:   "testurtle",
 	Short: "testurtle is the micro infrastructure tester.",
 	Long:  "testurtle is the micro infrastructure tester. That's all.",
@@ -31,7 +31,7 @@ func init() {
 	rootCmd.AddCommand(versionCmd)
 }
 
-var versionCmd = &cobra.Command{
+var versionCmd = &cobra.Command {
 	Use:   "version",
 	Short: "Print the version number of testurtle",
 	Run: func(cmd *cobra.Command, args []string) {

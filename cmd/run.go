@@ -18,7 +18,7 @@ func init() {
 	runCmd.Flags().StringVarP(&o.config, "file", "f", "./turtleconfig.json", "config file")
 }
 
-var runCmd = &cobra.Command{
+var runCmd = &cobra.Command {
 	Use:   "run",
 	Short: "Start Testing.",
 	Run: func(cmd *cobra.Command, args []string) {

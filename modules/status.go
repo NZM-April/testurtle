@@ -3,6 +3,8 @@ package modules
 import(
 	"fmt"
 	"net/http"
+
+	"github.com/NZM-April/testurtle/total"
 )
 
 func StatusModule(r *http.Response, i Items, okNum int, ngNum int)(int, int){
@@ -13,7 +15,7 @@ func StatusModule(r *http.Response, i Items, okNum int, ngNum int)(int, int){
 			fmt.Printf("[testurtle] error! %s\n", err)
 		}
 		b := r.StatusCode == i.Status
-		okNum, ngNum = Judgement(b, okNum, ngNum)
+		okNum, ngNum = total.Judgement(b, okNum, ngNum)
 	}
 	return okNum, ngNum
 }
