@@ -6,6 +6,6 @@
         {"URL": "https://www.cncf.io", "contain": "Open", "title": "Native", "status": 200}
     ],
     "notifications": [
-        {"sh": "./notify.sh"}
+        {"cmd": "echo 'ok'"}
     ]
 }
