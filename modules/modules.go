@@ -17,9 +17,9 @@ type Module struct {
 	Items Items
 }
 
-func  (s *Session) ModuleRun(r *http.Response, bodyStr string, i Items){
+func (s *Session) ModuleRun(r *http.Response, bodyStr string, i Items){
 	module := Module{s.OkNum, s.NgNum, r, bodyStr, i}
 	s.OkNum, s.NgNum = module.ContainModule()
 	s.OkNum, s.NgNum = module.TitleModule()
-	s.OkNum, s.NgNum = StatusModule(r, i, s.OkNum, s.NgNum)
+	s.OkNum, s.NgNum = module.StatusModule()
 }
