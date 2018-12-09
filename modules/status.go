@@ -2,20 +2,12 @@ package modules
 
 import(
 	"fmt"
-	"net/http"
-
-	"github.com/NZM-April/testurtle/total"
 )
 
-func StatusModule(r *http.Response, i Items, okNum int, ngNum int)(int, int){
-	if i.Status != 0 {
-		var err error
-		fmt.Printf("[testurtle] %s : %d\n", i.URL, i.Status)
-		if err != nil {
-			fmt.Printf("[testurtle] error! %s\n", err)
-		}
-		b := r.StatusCode == i.Status
-		okNum, ngNum = total.Judgement(b, okNum, ngNum)
+func (m *ModuleArgs) StatusModule(){
+	if m.Items.Status != 0 {
+		fmt.Printf("[testurtle] %s : %d\n", m.Items.URL, m.Items.Status)
+		b := m.Response.StatusCode == m.Items.Status
+		m.Judgement(b)
 	}
-	return okNum, ngNum
 }

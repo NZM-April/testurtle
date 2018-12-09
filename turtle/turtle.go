@@ -20,23 +20,20 @@ func Turtling(config string) {
 }
 
 func Patrol(items []modules.Items) {
-	okNum := 0
-	ngNum := 0
+	var session modules.Session
 
 	for _, i := range items {
 		r, err := http.Get(i.URL)
 		if err != nil{
-			fmt.Println()
+			fmt.Println(err)
 		}
 		buf := new(bytes.Buffer)
 		buf.ReadFrom(r.Body)
 		bodyStr := buf.String()
 
-		okNum, ngNum = modules.ContainModule(bodyStr, i, okNum, ngNum)
-		okNum, ngNum = modules.TitleModule(bodyStr, i, okNum, ngNum)
-		okNum, ngNum = modules.StatusModule(r, i, okNum, ngNum)
+		session.ModuleRun(r, bodyStr, i)
 	}
-	fmt.Printf("[testurtle] Test completed. OK: \x1b[32m%d\x1b[0m  NG: \x1b[31m%d\x1b[0m\n", okNum, ngNum)
+	fmt.Printf("[testurtle] Test completed. OK: \x1b[32m%d\x1b[0m  NG: \x1b[31m%d\x1b[0m\n", session.OkNum, session.NgNum)
 }
 
 func Notify(notifications []modules.Notifications){

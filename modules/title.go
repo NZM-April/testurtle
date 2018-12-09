@@ -4,8 +4,6 @@ import(
 	"regexp"
 	"strings"
 	"fmt"
-
-	"github.com/NZM-April/testurtle/total"
 )
 
 func FindTitle(s string) string {
@@ -16,16 +14,11 @@ func FindTitle(s string) string {
 	return trimed_Title
 }
 
-func TitleModule(bodyStr string, i Items, okNum int, ngNum int)(int, int){
-	if i.Title != "" {
-		var err error
-		fmt.Printf("[testurtle] %s : %s\n", i.URL, i.Title)
-		if err != nil {
-			fmt.Printf("[testurtle] error! %s\n", err)
-		}
-		title := FindTitle(bodyStr)
-		b := strings.Contains(title, i.Title)
-		okNum, ngNum = total.Judgement(b, okNum, ngNum)
+func (m *ModuleArgs) TitleModule(){
+	if m.Items.Title != "" {
+		fmt.Printf("[testurtle] %s : %s\n", m.Items.URL, m.Items.Title)
+		title := FindTitle(m.BodyStr)
+		b := strings.Contains(title, m.Items.Title)
+		m.Judgement(b)
 	}
-	return okNum, ngNum
 }
