@@ -14,7 +14,7 @@ func FindTitle(s string) string {
 	return trimed_Title
 }
 
-func (m *Module) TitleModule(){
+func (m *ModuleArgs) TitleModule(){
 	if m.Items.Title != "" {
 		fmt.Printf("[testurtle] %s : %s\n", m.Items.URL, m.Items.Title)
 		title := FindTitle(m.BodyStr)

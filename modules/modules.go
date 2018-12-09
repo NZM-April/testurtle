@@ -10,7 +10,7 @@ type Session struct {
 	NgNum int
 }
 
-type Module struct {
+type ModuleArgs struct {
 	Session *Session
 	Response *http.Response
 	BodyStr string
@@ -18,13 +18,13 @@ type Module struct {
 }
 
 func (s *Session) ModuleRun(r *http.Response, bodyStr string, i Items){
-	module := Module{s, r, bodyStr, i}
-	module.ContainModule()
-	module.TitleModule()
-	module.StatusModule()
+	moduleargs := ModuleArgs{s, r, bodyStr, i}
+	moduleargs.ContainModule()
+	moduleargs.TitleModule()
+	moduleargs.StatusModule()
 }
 
-func (m *Module)Judgement(b bool){
+func (m *ModuleArgs)Judgement(b bool){
 	if b == true {
 		fmt.Printf("%s \x1b[32m%s\x1b[0m\n", "[testurtle] =>", "ok")
 		m.Session.OkNum++
