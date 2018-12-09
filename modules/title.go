@@ -16,7 +16,7 @@ func FindTitle(s string) string {
 	return trimed_Title
 }
 
-func (m *Module) TitleModule()(int, int){
+func (m *Module) TitleModule(){
 	if m.Items.Title != "" {
 		var err error
 		fmt.Printf("[testurtle] %s : %s\n", m.Items.URL, m.Items.Title)
@@ -27,5 +27,4 @@ func (m *Module) TitleModule()(int, int){
 		b := strings.Contains(title, m.Items.Title)
 		m.Session.OkNum, m.Session.NgNum = total.Judgement(b, m.Session.OkNum, m.Session.NgNum)
 	}
-	return m.Session.OkNum, m.Session.NgNum
 }

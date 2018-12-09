@@ -18,7 +18,7 @@ type Module struct {
 
 func (s *Session) ModuleRun(r *http.Response, bodyStr string, i Items){
 	module := Module{s, r, bodyStr, i}
-	s.OkNum, s.NgNum = module.ContainModule()
-	s.OkNum, s.NgNum = module.TitleModule()
+	module.ContainModule()
+	module.TitleModule()
 	module.StatusModule()
 }
