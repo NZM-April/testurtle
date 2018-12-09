@@ -10,26 +10,30 @@ type ResultNums struct {
 	NgNum int
 }
 
-type ModuleArgs struct {
+type Session struct {
 	ResultNums *ResultNums
 	Response *http.Response
 	BodyStr string
 	Items Items
 }
 
-func (rn *ResultNums) ModuleRun(r *http.Response, bodyStr string, i Items){
-	moduleargs := ModuleArgs{rn, r, bodyStr, i}
-	moduleargs.ContainModule()
-	moduleargs.TitleModule()
-	moduleargs.StatusModule()
+func (rn *ResultNums) ItemsModuleRun(r *http.Response, bodyStr string, i Items){
+	session := Session{rn, r, bodyStr, i}
+	session.ContainModule()
+	session.TitleModule()
+	session.StatusModule()
 }
 
-func (m *ModuleArgs)Judgement(b bool){
+func (s *Session)Judgement(b bool){
 	if b == true {
 		fmt.Printf("%s \x1b[32m%s\x1b[0m\n", "[testurtle] =>", "ok")
-		m.ResultNums.OkNum++
+		s.ResultNums.OkNum++
 	} else {
 		fmt.Printf("%s \x1b[31m%s\x1b[0m\n", "[testurtle] =>", "ng")
-		m.ResultNums.NgNum++
+		s.ResultNums.NgNum++
 	}
+}
+
+func (rn *ResultNums) NotificationsModuleRun(n Notifications){
+	CommandModule(n)
 }
