@@ -4,6 +4,7 @@ import(
 	"fmt"
 	"os/exec"
 	"strings"
+	"strconv"
 
 	"github.com/mattn/go-shellwords"
 )
@@ -11,8 +12,8 @@ import(
 func (rn *ResultNums) CommandModule(n Notifications){
 	if n.Cmd != "" {
 		var out []byte
-		ReplaceVariable(n.Cmd, rn)
-		args, err := shellwords.Parse(n.Cmd)
+		replacedCmd := ReplaceVariable(n.Cmd, rn)
+		args, err := shellwords.Parse(replacedCmd)
 		if err != nil {
 			fmt.Println(err)
 		}
@@ -26,6 +27,8 @@ func (rn *ResultNums) CommandModule(n Notifications){
 	}
 }
 
-func ReplaceVariable(cmd string, rn *ResultNums){
-	strings.Replace(cmd, "$oknum", string(rn.OkNum), -1)
+func ReplaceVariable(cmd string, rn *ResultNums) string {
+	okNum := strconv.Itoa(rn.OkNum)
+	replacedCmd := strings.Replace(cmd, "okNum", okNum, 1)
+	return replacedCmd
 }
