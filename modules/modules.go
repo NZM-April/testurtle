@@ -3,6 +3,7 @@ package modules
 import(
 	"net/http"
 	"fmt"
+	"strconv"
 )
 
 type ResultNums struct {
@@ -36,6 +37,6 @@ func (s *Session)Judgement(b bool){
 }
 
 func (rn *ResultNums) NotificationsModuleRun(n Notifications){
-	rn.Msg = "Test completed. OK: " + rn.OkNum + "  NG: " + rn.NgNum
+	rn.Msg = "Test completed. OK: " + strconv.Itoa(rn.OkNum) + "  NG: " + strconv.Itoa(rn.NgNum)
 	rn.CommandModule(n)
 }
