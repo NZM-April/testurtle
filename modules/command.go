@@ -22,13 +22,17 @@ func (rn *ResultNums) CommandModule(n Notifications){
 		if err != nil {
 			fmt.Printf("[testurtle] error! %s\n", err)
 		} else {
-			fmt.Println("[testurtle] command done.\n")
+			fmt.Println("[testurtle] command done.")
 		}
 	}
 }
 
 func ReplaceVariable(cmd string, rn *ResultNums) string {
 	okNum := strconv.Itoa(rn.OkNum)
-	replacedCmd := strings.Replace(cmd, "$oknum", okNum, 1)
+	ngNum := strconv.Itoa(rn.NgNum)
+	msg := strconv.Itoa(rn.Msg)
+	replacedCmd := strings.Replace(cmd, "$oknum", okNum, -1)
+	replacedCmd = strings.Replace(cmd, "$ngnum", ngNum, -1)
+	replacedCmd = strings.Replace(cmd, "$msg", msg, -1)
 	return replacedCmd
 }
