@@ -5,7 +5,7 @@ testurtle is Infrastructure Testing Micro Engine.
 # motivation!
 
 Infrastructure is very complicated.<br>
-Firewall, WAF, Security Group, Web Server...<br>
+DNS, Firewall, Security Group, Web Server...<br>
 Testing is necessary to ensure its reliability.<br>
 However, writing test code is a big task.<br>
 testurtle provides a minimal infrastructure test.<br>
