@@ -47,5 +47,7 @@ $ vi turtleconfig.json
 $ testurtle run -f turtleconfig.json
 ```
 
+![image](https://user-images.githubusercontent.com/38576286/49904495-b38d9d80-fead-11e8-8ccb-e7d849e1317a.png)
+
 # Copyright!
 Copyright (c) 2018 Ohki Nozomu
