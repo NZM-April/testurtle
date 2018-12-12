@@ -39,6 +39,5 @@ func ItemsRun(items []modules.Items) {
 func NotificationsRun(notifications []modules.Notifications){
 	for _, n := range notifications {
 		resultNums.NotificationsModuleRun(n)
-		fmt.Println("ここまではきてる")
 	}
 }
