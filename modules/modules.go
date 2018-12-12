@@ -8,6 +8,7 @@ import(
 type ResultNums struct {
 	OkNum int
 	NgNum int
+	Msg string
 }
 
 type Session struct {
@@ -35,5 +36,6 @@ func (s *Session)Judgement(b bool){
 }
 
 func (rn *ResultNums) NotificationsModuleRun(n Notifications){
+	rn.Msg = "Test completed. OK: " + rn.OkNum + "  NG: " + rn.NgNum
 	rn.CommandModule(n)
 }

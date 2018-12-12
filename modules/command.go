@@ -29,6 +29,6 @@ func (rn *ResultNums) CommandModule(n Notifications){
 
 func ReplaceVariable(cmd string, rn *ResultNums) string {
 	okNum := strconv.Itoa(rn.OkNum)
-	replacedCmd := strings.Replace(cmd, "okNum", okNum, 1)
+	replacedCmd := strings.Replace(cmd, "$oknum", okNum, 1)
 	return replacedCmd
 }
