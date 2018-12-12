@@ -36,7 +36,9 @@ $ vi turtleconfig.json
         {"URL": "https://www.cncf.io", "contain": "Open", "title": "Native", "status": 200}
     ],
     "notifications": [
-        {"cmd": "echo 'ok'"}
+        {"cmd": "echo 'oknum is $oknum'"},
+        {"cmd": "echo 'ngnum is $ngnum'"},
+        {"cmd": "echo 'msg is $msg'"}
     ]
 }
 ```
