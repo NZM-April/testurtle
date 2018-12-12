@@ -27,12 +27,6 @@ $ mv testurtle /usr/local/bin
 $ vi turtleconfig.json
 ```
 
-# run!
-
-```
-$ testurtle run -f turtleconfig.json
-```
-
 ```
 {
     "items": [
@@ -45,6 +39,12 @@ $ testurtle run -f turtleconfig.json
         {"cmd": "echo 'ok'"}
     ]
 }
+```
+
+# run!
+
+```
+$ testurtle run -f turtleconfig.json
 ```
 
 # Copyright!
