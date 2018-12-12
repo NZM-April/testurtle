@@ -30,9 +30,8 @@ func (rn *ResultNums) CommandModule(n Notifications){
 func ReplaceVariable(cmd string, rn *ResultNums) string {
 	okNum := strconv.Itoa(rn.OkNum)
 	ngNum := strconv.Itoa(rn.NgNum)
-	msg := strconv.Itoa(rn.Msg)
-	replacedCmd := strings.Replace(cmd, "$oknum", okNum, -1)
-	replacedCmd = strings.Replace(cmd, "$ngnum", ngNum, -1)
-	replacedCmd = strings.Replace(cmd, "$msg", msg, -1)
-	return replacedCmd
+	cmdR1 := strings.Replace(cmd, "$oknum", okNum, -1)
+	cmdR2 := strings.Replace(cmdR1, "$ngnum", ngNum, -1)
+	cmdR3 := strings.Replace(cmdR2, "$msg", rn.Msg, -1)
+	return cmdR3
 }
