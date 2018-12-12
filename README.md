@@ -12,12 +12,25 @@ testurtle provides a minimal infrastructure test.
 
 # Installation!
 
-# Configuration
+install go, dep
+
+```
+$ git clone
+$ dep ensure
+$ go build -o testurtle
+$ mv testurtle /usr/local/bin
+```
+
+# Configuration!
+
+```
+$ vi turtleconfig.json
+```
 
 # run!
 
 ```
-$ testurtle run
+$ testurtle run -f turtleconfig.json
 ```
 
 # Copyright
