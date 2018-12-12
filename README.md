@@ -33,5 +33,5 @@ $ vi turtleconfig.json
 $ testurtle run -f turtleconfig.json
 ```
 
-# Copyright
+# Copyright!
 Copyright (c) 2018 Ohki Nozomu
