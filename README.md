@@ -33,5 +33,19 @@ $ vi turtleconfig.json
 $ testurtle run -f turtleconfig.json
 ```
 
+```
+{
+    "items": [
+        {"URL": "https://www.hashicorp.com/", "contain": "Cloud"},
+        {"URL": "https://github.com/", "title": "GitHub"},
+        {"URL": "https://www.google.com/", "status": 200},
+        {"URL": "https://www.cncf.io", "contain": "Open", "title": "Native", "status": 200}
+    ],
+    "notifications": [
+        {"cmd": "echo 'ok'"}
+    ]
+}
+```
+
 # Copyright!
 Copyright (c) 2018 Ohki Nozomu
