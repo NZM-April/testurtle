@@ -1,3 +1,4 @@
+// turtle package is the main implementation of the testing.
 package turtle
 
 import (
@@ -21,6 +22,8 @@ func Turtling(config string) {
 	NotificationsRun(notifications)
 }
 
+
+// The ItemsRun function fetches the page and executes the item modules on it.
 func ItemsRun(items []modules.Items) {
 	for _, i := range items {
 		r, err := http.Get(i.URL)
@@ -36,6 +39,7 @@ func ItemsRun(items []modules.Items) {
 	fmt.Printf("[testurtle] Test completed. OK: \x1b[32m%d\x1b[0m  NG: \x1b[31m%d\x1b[0m\n", resultNums.OkNum, resultNums.NgNum)
 }
 
+// The NotificationsRun function executes the notification modules.
 func NotificationsRun(notifications []modules.Notifications){
 	for _, n := range notifications {
 		resultNums.NotificationsModuleRun(n)
