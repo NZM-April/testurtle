@@ -22,7 +22,6 @@ func Turtling(config string) {
 	NotificationsRun(notifications)
 }
 
-
 // The ItemsRun function fetches the page and executes the item modules on it.
 func ItemsRun(items []modules.Items) {
 	for _, i := range items {
